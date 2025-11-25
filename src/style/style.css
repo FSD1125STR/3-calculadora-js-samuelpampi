@@ -1,0 +1,167 @@
+:root{
+    --calculator-bg: rgb(65, 65, 65);
+    --command-button-bg: rgb(80, 80, 80);
+    --command-button-hover: rgb(83, 83, 83);
+    --number-button-bg: rgb(100, 100, 100);
+    --number-button-hover: rgb(105, 105, 105);
+    --operator-button-bg: rgb(241, 151, 33);
+    --operator-button-hover: rgb(255, 160, 35);
+    --bar-red: #FF605C;
+    --bar-yellow: #FFBD44;
+    --bar-green: #00CA4E;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+}
+
+/* Layout Principal */
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#calculator{
+    background-color: var(--calculator-bg);
+    display: flex;
+    flex-direction: column;
+    border-radius: 13px;
+}
+
+/* Screen Layout */
+.bar{
+    height: 35px;
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+}
+
+.bar span{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.bar .red{
+    background-color: var(--bar-red);
+}
+
+.bar .yellow{
+    background-color: var(--bar-yellow);
+}
+
+.bar .green{
+    background-color: var(--bar-green);
+}
+
+
+#screen{
+    height: 80px;
+    width: 350px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+
+/* Buttons Layout */
+
+#buttons{
+    padding: 3px;
+    width: 350px;
+    height: 420px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 1px;
+}
+
+#command-buttons{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    gap: 1px;
+}
+
+#operator-buttons{
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 6;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+#number-buttons{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 6;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 1px;
+}
+
+.button{
+    border: none;
+    color: white;
+    font-size: 30px;
+    font-weight: 200;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+button:hover {
+  border-radius: 2px;
+  font-weight: 300;
+}
+
+#btn-0{
+    border-bottom-left-radius: 10px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+#btn-decimal{
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
+#btn-result{
+    border-bottom-right-radius: 10px;
+}
+
+.command{
+    background-color: var(--command-button-bg);
+}
+
+.command:hover{
+    background-color: var(--command-button-hover);
+}
+
+.number{
+    background-color: var(--number-button-bg);
+}
+
+.number:hover{
+    background-color: var(--number-button-hover);
+}
+
+.operator{
+    background-color: var(--operator-button-bg);
+}
+
+.operator:hover{
+    background-color: var(--operator-button-hover);
+}

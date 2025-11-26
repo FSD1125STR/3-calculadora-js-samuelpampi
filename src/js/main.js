@@ -1,11 +1,38 @@
+const display = document.getElementById("screen-current");
+var allowOperator = false;
+
 //Maneja las teclas de los numeros
 function clickNumber(button){
     console.log("Se ha pulsado un numero: " + button.textContent);
+
+    //Añadimos el numero al display
+    display.textContent = display.textContent + button.textContent;
+    allowOperator = true; //Reiniciamos para saber que se puede escribir un operador
 }
 
 //Maneja las teclas de los operadores
 function clickOperator(button){
+    
     console.log("Se ha pulsado un operador: " + button.textContent);
+
+    //Comprobamos si se ha añadido un operador
+    if(allowOperator){
+        //Se puede escribir un operador porque no se ha escrito ninguno justo antes
+        //Añadimos el operador al display
+        display.textContent = display.textContent + button.textContent;
+        allowOperator = false;
+
+    } else{
+        //No se puede escribir un operador porque se ha escrito uno justo antes -> Lo sustituimos por el nuevo
+        display_array = Array.from(display.textContent);
+        //Cambiamos el ultimo operador por el nuevo
+        display_array.pop()
+        display_array.push(button.textContent);
+        //Convertimos el array a string nuevamente y lo metemos en el display
+        new_display_text = display_array.join("");
+        display.textContent = new_display_text
+
+    }
 }
 
 //Maneja las teclas de los comandos

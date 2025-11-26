@@ -34,8 +34,8 @@ function renderCommands(){
 
     //Definimos los tipos de botones
     const commandButtons = [
+        { id: "btn-del", label: "⇐" },
         { id: "btn-reset", label: "AC" },
-        { id: "btn-sign", label: "⁺/₋" },
         { id: "btn-module", label: "%" },
     ]
 
@@ -80,6 +80,13 @@ function renderNumbers(){
     decimalButton.classList.add("button", "number");
     decimalButton.textContent = ',';
     numbersContainer.appendChild(decimalButton);
+
+    //Colocamos elemento de cambio de signo
+    let signedButton = document.createElement("button");
+    signedButton.id = 'btn-sign';
+    signedButton.classList.add("button", "number");
+    signedButton.textContent = '⁺/₋';
+    numbersContainer.appendChild(signedButton);
 
 }
 

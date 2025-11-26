@@ -1,4 +1,5 @@
 :root{
+    --body-background: #d4d4d4;
     --calculator-bg: rgb(65, 65, 65);
     --command-button-bg: rgb(80, 80, 80);
     --command-button-hover: rgb(83, 83, 83);
@@ -6,6 +7,7 @@
     --number-button-hover: rgb(105, 105, 105);
     --operator-button-bg: rgb(241, 151, 33);
     --operator-button-hover: rgb(255, 160, 35);
+    --text-color: #ffff;
     --bar-red: #FF605C;
     --bar-yellow: #FFBD44;
     --bar-green: #00CA4E;
@@ -25,6 +27,7 @@ body{
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: var(--body-background);
 }
 
 #calculator{
@@ -60,12 +63,25 @@ body{
     background-color: var(--bar-green);
 }
 
-
 #screen{
     height: 80px;
     width: 350px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px 10px;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-between;
+}
+
+ #screen-previous{
+    font-size: 26px;
+    color: var(--number-button-hover);
+ }
+
+ #screen-current{
+    font-size: 34px;
+    color: var(--text-color);
 }
 
 
@@ -127,15 +143,20 @@ button:hover {
   font-weight: 300;
 }
 
-#btn-0{
-    border-bottom-left-radius: 10px;
-    grid-column-start: 1;
+#btn-0{    
+    grid-column-start: 2;
     grid-column-end: 3;
 }
 
 #btn-decimal{
     grid-column-start: 3;
     grid-column-end: 4;
+}
+#btn-sign{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 4;
+    border-bottom-left-radius: 10px;
 }
 
 #btn-result{

@@ -1,4 +1,5 @@
 const display = document.getElementById("screen-current");
+const displayPrev = document.getElementById("screen-previous");
 const operatorChars = ['÷', '×', '-', '+', '%'];
 
 //Comprueba si es un numero
@@ -55,6 +56,7 @@ function allowOperator(display_text, new_op){
 //Resetea la calculadora
 function resetCalcualtor(){
     display.textContent = "0";
+    displayPrev.textContent = "";
 }
 
 //Borra el ultimo caracter, es necesario comprobar las validaciones
@@ -155,7 +157,8 @@ function clickNumber(button){
     display_array = Array.from(display.textContent);
     if(display_array[0] == "0" && !isNaN(Number(display_array[1]))) display_array.shift(); //Elimina el primer elemento
     new_display_text = display_array.join("");
-    display.textContent = new_display_text
+    display.textContent = new_display_text;
+    display.scrollLeft = display.scrollWidth; //Ajusta el scroll horizontal
 
 }
 
@@ -181,6 +184,8 @@ function clickOperator(button){
         display.textContent = new_display_text
 
     }
+
+    display.scrollLeft = display.scrollWidth; //Ajusta el scroll horizontal
 }
 
 //Calcula el resultado final de lo que hay escrito en el display
@@ -188,10 +193,13 @@ function calculateResult(){
     let display_text = display.textContent;
     //Sustituimos caracteres
     let transoformedText = display_text.replaceAll("÷", "/").replaceAll("×", "*").replaceAll(",", ".");
-    console.log("Texto tranformado: " + transoformedText);
     let result = math.evaluate(transoformedText);
-    console.log("Resultado: " + result);
+
+    //Actualizamos el display
+    displayPrev.textContent = display_text;
+    display.textContent = result;  
     
+    displayPrev.scrollLeft = displayPrev.scrollWidth; //Ajusta el scroll horizontal
 }
 
 //Maneja las teclas de los comandos
@@ -206,6 +214,8 @@ function clickCommand(button){
         case "btn-result": calculateResult(); break;
         default: break;
     }
+
+    display.scrollLeft = display.scrollWidth; //Ajusta el scroll horizontal
 }
 
 //Esta funcion manejará los clicks diferenciando entre botones
@@ -220,13 +230,18 @@ function handleClick(elementButton){
     //Analizamos que tecla ha pulsado para poder manejarla
     if(numbers.includes(elementButton.id)) clickNumber(elementButton);
     else if(operadores.includes(elementButton.id)) clickOperator(elementButton);
-    else if(specialbuttons.includes(elementButton.id)) clickCommand(elementButton);    
+    else if(specialbuttons.includes(elementButton.id)) clickCommand(elementButton);  
 }
 
 //Inicia los eventos principales para capturar los clicks de los botones
 function addEvents(){
     //Recupero todos los botones en forma de array
     var buttons = Array.from(document.getElementsByClassName("button")); 
+    displayPrev.addEventListener('click', () => {
+        //Pasamos la operacion anterior al display
+        display.textContent = displayPrev.textContent; 
+        displayPrev.textContent = "";
+    })
 
     //Recorro todo el array de botones para añadir un evento que maneje los clicks
     buttons.forEach(button => {
@@ -234,7 +249,6 @@ function addEvents(){
             handleClick(button); //Cuando se hace click se envia a un manejador de eventos
         });
     });
-
 }
 
 addEventListener("DOMContentLoaded", (event) => { 

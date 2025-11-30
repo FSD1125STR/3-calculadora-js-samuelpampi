@@ -74,14 +74,29 @@ body{
     justify-content: space-between;
 }
 
- #screen-previous{
+#screen-previous{
     font-size: 26px;
+    width: 100%;
     color: var(--number-button-hover);
+    cursor: pointer;
+    white-space: nowrap;   /* nunca salto de línea */
+    text-align: right;      /* para que el orden visual siga siendo normal */
+    overflow-x: auto;       /* permite scroll horizontal */
+    overflow-y: hidden;
+    scrollbar-width: none; 
+    
  }
 
- #screen-current{
+#screen-current{
     font-size: 34px;
+    width: 100%;
     color: var(--text-color);
+    white-space: nowrap;   /* nunca salto de línea */
+    text-align: right;      /* para que el orden visual siga siendo normal */
+    overflow-x: auto;       /* permite scroll horizontal */
+    overflow-y: hidden;
+    scrollbar-width: none; 
+    
 }
 
 
